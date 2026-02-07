@@ -33,7 +33,7 @@ By default, all HTML pages (except `/404.html`) will generate _pretty URLs_
 `/about-us.html`, the URL is `/about-us/`. This is done by saving all files as
 `index.html` and creating all directories as needed.
 
-If you want to disable it, set `prettyUrls` to `false` in
+If you want to disable it, set `prettyUrls` to `false` in the
 [config file](../configuration/config-file.md#prettyurls), so you will have
 something like this:
 
