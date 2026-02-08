@@ -24,7 +24,9 @@ page_css: plugins.css
     </form>
 
     <ul class="plugins-list">
-      {{ for page of search.pages("url^=/plugins/ url!=/plugins/", "title") }}
+      {{
+        for page of search.pages("url^=/plugins/ url!=/plugins/", "title=asc-locale")
+      }}
         <li
           class="plugin {{ if page.enabled }} is-enabled{{ /if }}"
           data-tags="{{ page.tags }}"

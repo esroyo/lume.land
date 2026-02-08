@@ -1,7 +1,6 @@
 ---
 title: Image size
 description: Generate automatically the width and height attributes of images
-mod: plugins/image_size.ts
 tags:
   - images
 ---
@@ -21,7 +20,7 @@ import imageSize from "lume/plugins/image_size.ts";
 
 const site = lume();
 
-site.use(imageSize(/* Options */));
+site.use(imageSize());
 
 export default site;
 ```
