@@ -8,10 +8,11 @@ tags:
 
 ## Description
 
-This plugin uses the [KaTeX](https://katex.org/) library to render the math
-typesetting of your HTML documents. You only need to add the `language-math`
-extension to any math content that you want to render. In markdown pages, it can
-be done in code blocks with the `math` language:
+This plugin uses the [KaTeX](https://katex.org/) library (with the `mhchem`
+extension enabled) to render the math typesetting of your HTML documents. You
+only need to add the `language-math` extension to any math content that you want
+to render. In markdown pages, it can be done in code blocks with the `math`
+language:
 
 <pre><code class="language-md hljs"># This is a markdown document
 
@@ -56,4 +57,13 @@ sure to link the CSS file and use the HTML5 doctype.
 <html>
   <head>
     <link rel="stylesheet" href="/style.css">
+```
+
+Set `cssFile` to `false` to disable this behavior, useful if you want to use
+different styles and fonts:
+
+```js
+site.use(katex({
+  cssFile: false, // Don't download CSS and fonts
+}));
 ```

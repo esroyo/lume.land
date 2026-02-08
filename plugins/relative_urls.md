@@ -49,3 +49,16 @@ example:
 This plugin changes not only the `<a>` elements, but any element with the `href`
 attribute (`link`, `area`) or `src` (`img`, `video`, `audio`, etc). It also
 detect `@import` and `url()` functions in CSS files.
+
+## `relativeUrl` helper
+
+The plugin also register the `relativeUrl`, useful to manually generate relative
+urls:
+
+```vento
+Relative from this page:
+{{ "/articles/my-second-article/" |> relativeUrl }}
+
+Relative from other page:
+{{ "/articles/my-second-article/" |> relativeUrl("/from/page/") }}
+```

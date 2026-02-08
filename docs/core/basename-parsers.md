@@ -78,3 +78,46 @@ The `parseBasename` function is used for both files and folders. This allows
 extracting values from a folder name and storing them as
 [shared data](../creating-pages/shared-data.md), so they are available to all
 pages inside.
+
+## Cascade behavior
+
+As of Lume 3.2, the data from the parent folder is added as the second argument.
+This allows us to compose values contextually using the names of different
+folders. For example, let's say we have some files with the following paths:
+
+```
+/2026/01/01/happy-new-year.md
+/2026/01/05/this-year-sucks.md
+```
+
+Now you can compose the final date of each file using the values of the
+directories and subdirectories. For example:
+
+```js
+site.parseBasename((basename, parent) => {
+  // Check if the name only contains numbers
+  if (!/^\d+$/.test(name)) {
+    return;
+  }
+
+  // 4 digits, it's the year
+  if (basename.length === 4) {
+    return { year: basename, basename }
+  }
+
+  // 2 digits, it's the month or day
+  if (basename.length === 2) {
+    // If the month isn't in the parent, this is the month
+    if (!parent.month) {
+      return { month: basename, basename }
+    }
+
+    // This is the day, generate the final date
+    const { year, month } = parent;
+    return {
+      date: `${year}`-${month}`-${basename}`,
+      basename,
+    }
+  }
+})
+```

@@ -169,10 +169,11 @@ following options:
 
 ### root
 
-Set the root folder for the server. By default it's the same directory as
-`dest`. The only use case in which you may want to change this is if your `dest`
-folder is, for example `_site/blog` and you want to expose the `blog` folder
-when serving the site because all urls start with `/blog/`.
+Set the root folder for the server. It's relative to the `dest` folder and by
+default it's `.` (the same directory). The only use case in which you may want
+to change this is if your `dest` folder is, for example `_site/blog` and you
+want to expose the `blog` folder when serving the site because all urls start
+with `/blog/`.
 
 ### port
 
@@ -257,6 +258,9 @@ watch file changes with `lume --serve` and `lume --watch`.
 - **debounce:** The debounce interval (in milliseconds). By default is `100`.
 - **ignore:** An array of strings or functions to filter paths ignored by the
   watcher.
+- **dependencies:** An object to manually map file dependencies. If the watcher
+  detects that a dependency has changed, the dependent file will be considered
+  as changed too
 
 ```ts
 const site = lume({
@@ -267,6 +271,10 @@ const site = lume({
       "./ignored-file.txt",
       (path) => path.endsWith(".foo"), // ignore extension
     ],
+    dependencies: {
+      // If dep-1.ts or dep-2.ts change, _data.js is considered changed too.
+      "_data.js": ["dep-1.ts", "dep-2.ts"],
+    },
   },
 });
 ```

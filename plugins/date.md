@@ -97,11 +97,19 @@ site.use(date({
 Use the second argument to set the locale:
 
 ```vento
-<time datetime="{{ createdAt |> date }}">
-  {{ createdAt | date("HUMAN_DATE", "gl") }}
-</time>
+{{ createdAt | date("HUMAN_DATE", "gl") }}
 ```
 
-> [!important]
->
-> The first locale set in the `_config.js` is also used as the default locale.
+If no locale is provided, the plugin will infer the locale of the current page
+using the `lang` variable:
+
+```vento
+---
+lang: gl
+---
+
+{{ createdAt | date("HUMAN_DATE") }}
+```
+
+The first locale set in the `_config.js` is used if the locale of the current
+page can't be detected.

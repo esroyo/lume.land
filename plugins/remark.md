@@ -46,3 +46,11 @@ site.use(remark({
 
 export default site;
 ```
+
+## `mdRemark` helper
+
+The plugin also register the `mdRemark` filter, useful to render markdown:
+
+```vento
+{{ "Hello **world**" |> mdRemark }}
+```
