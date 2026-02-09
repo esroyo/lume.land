@@ -37,9 +37,11 @@ page_css: theme.css
     </div>
 
     <div class="theme-buttons">
-      <a class="button is-primary is-big" href="{{ demo }}" target="_blank">
-        Open a live demo ↗
-      </a>
+      {{ if demo }}
+        <a class="button is-primary is-big" href="{{ demo }}" target="_blank">
+          Open a live demo ↗
+        </a>
+      {{ /if }}
       <a class="button is-secondary is-big" href="{{ repo }}" target="_blank">
         See code ↗
       </a>
