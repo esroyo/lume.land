@@ -13,6 +13,12 @@ sites:
     description: This web site
     code: https://github.com/lumeland/lume.land
 
+  - title: CloudCannon documentation
+    img: /img/showcase/cloudcannon.webp
+    url: https://cloudcannon.com/documentation/
+    description: Platform documentation for CloudCannon
+    code: https://github.com/CloudCannon/platform-documentation
+
   - title: Ege Çelikçi
     img: /img/showcase/egecelikci.webp
     url: https://ege.celikci.me/
@@ -252,12 +258,6 @@ sites:
     url: https://www.2100finance.com/
     description: |
       Personal finance: savings, debt, credit, investing, retirement planning
-
-  - title: CloudCannon documentation
-    img: /img/showcase/cloudcannon.webp
-    url: https://cloudcannon.com/documentation/
-    description: Platform documentation for CloudCannon
-    code: https://github.com/CloudCannon/platform-documentation
 
   - title: Nonwiz's Homepage
     img: /img/showcase/nonwiz.webp
