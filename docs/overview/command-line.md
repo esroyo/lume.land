@@ -7,7 +7,7 @@ order: 2
 ## Setup Lume CLI on your computer
 
 Lume uses [Deno tasks](https://docs.deno.com/runtime/reference/cli/task_runner/)
-to work, so you only have to type `deno task lume [...args]` to run any lume
+to run it, so you only have to type `deno task lume [...args]` to run any Lume
 command.
 
 Some people can find this a bit verbose, so if you don't want to type
@@ -20,16 +20,19 @@ deno install --allow-run --allow-env --allow-read --name lume --force --reload -
 
 This script creates the `lume` command with the following subcommands:
 
-- `lume init` runs the command `deno run -A https://lume.land/init.ts` to
+- `lume init` is a shortcut for `deno run -A https://lume.land/init.ts` to
   initialize Lume in the current directory.
 - `lume upgrade` upgrades the version of Lume, LumeCMS and any known theme to
   the latest version.
 - `lume upgrade-cli` upgrades Lume CLI to the latest version.
-- Any other command will be delegated to `deno task lume [...args]`. For
-  example, `lume -s` is equivalent to running `deno task lume -s`.
+- Any other command is delegated to `deno task lume [...args]`. For example,
+  `lume -s` is equivalent to running `deno task lume -s`.
 - The CLI command has also some useful shortcuts like `--drafts` (to create the
   `LUME_DRAFTS=true` environment variable) and `--debug`, `--info`, `--warning`,
   `--error` and `--critical` to change the `LUME_LOGS` environment variable.
+
+Because Lume CLI is optional, in the documentation we will use the long syntax
+(`deno task lume ...`) that works everywere.
 
 ## Build the site
 
@@ -37,12 +40,9 @@ Run the following to build your website:
 
 ```sh
 deno task lume
-
-# or with Lume CLI
-lume
 ```
 
-This command compiles your documents to HTML and save them into the dest
+This command compiles the source files to HTML and save them into the dest
 directory (usually `_site`).
 
 > [!tip]
@@ -51,39 +51,31 @@ directory (usually `_site`).
 
 ## Start a local server
 
-Typically you will want to open the site in your browser so you can start a
-local server by adding the `--serve` (or `-s`) argument:
+Typically you will want to start a local server and open the site in your
+browser. To do that, add the `--serve` (or `-s`) argument:
 
 ```sh
 deno task lume -s
-
-# or with Lume CLI
-lume -s
 ```
 
 > [!tip]
 >
 > There's the `deno task serve` task as an alias.
 
-This command initializes a **local web server** and starts **watching changes**
-of your site. So after changing anything, Lume will rebuild the site and reload
-your browser automatically with the new changes. The local server use the port
-`3000` by default but you can change it with the `--port` argument. For example:
+This command initializes a **local web server** and starts **watching the
+changes** of the source files. If you edit any file, Lume will detect this
+change, rebuild the site and refresh your browser automatically. The local
+server use the port `3000` by default but you can change it with the `--port`
+(or `-p`) argument. For example:
 
 ```sh
 deno task lume -s --port=8000
-
-# or with Lume CLI
-lume -s --port=8000
 ```
 
 To watch changes without starting a local server, use the `--watch` argument:
 
 ```sh
 deno task lume --watch
-
-# or with Lume CLI
-lume --watch
 ```
 
 ## Help

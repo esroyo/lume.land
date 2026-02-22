@@ -31,7 +31,7 @@ body {
 
 Now we need to import this CSS file in all pages. Fortunately, we are using the
 same layout on all pages, so we only need to edit the layout file to include a
-`<link rel="stylesheet">` element pointing to our `styles.css` file:
+`<link rel="stylesheet">` element pointing to our `/styles.css` file:
 
 <lume-code>
 
@@ -52,7 +52,7 @@ same layout on all pages, so we only need to edit the layout file to include a
 </lume-code>
 
 Now, all pages have the `<link>` element, but the styles are not applied. If you
-inspect the `_site` folder, you won't see the styles.css file there, and the URL
+inspect the `_site` folder, you won't see the CSS file, and the URL
 `http://localhost:3000/styles.css` returns a 404 error.
 
 This is because Lume, by default, only generates HTML pages from files with
@@ -99,5 +99,5 @@ are applied to all HTML pages.
 > [!tip]
 >
 > The `add()` function is very powerful, it allows you to add files by name or
-> extension, add folders, change the output name, etc. See the
-> [`add` documentation](../configuration/add-files.md) to learn more.
+> extension, add folders, change the output name, download remote files, etc.
+> See the [`add` documentation](../configuration/add-files.md) to learn more.

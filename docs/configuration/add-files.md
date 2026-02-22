@@ -12,7 +12,7 @@ ignored.
 
 If you want to include other files to complement the HTML pages like CSS or JS
 files, images, videos, audios, etc you have to add them explicitly with the
-`add()` method:
+`add()` function:
 
 ```js
 // Add all files in the "img" directory
@@ -27,13 +27,13 @@ and the files and directories are copied maintaining the same directory
 structure. Use the second argument to rename the file or directory:
 
 ```js
-// Add the "img" directory and rename it to "images"
+// Add the "img" directory as "images"
 site.add("img", "images");
 
-// Add the "static-files/favicons/favicon.ico" renamed to "favicon.ico"
+// Add the "static-files/favicons/favicon.ico" as "favicon.ico"
 site.add("static-files/favicons/favicon.ico", "favicon.ico");
 
-// Add content of "assets" directory to the root of your site
+// Add the content of the "assets" directory to the root folder
 site.add("assets", ".");
 ```
 
@@ -75,8 +75,8 @@ site.add("_headers");
 
 ## Add by file extension
 
-Another way to select files is by extension. Use an array with the extensions of
-the files that you want to add:
+Another way to select files is by the extension. Use an array with the
+extensions of the files that you want to add:
 
 ```js
 // Add some image files
@@ -99,7 +99,7 @@ In this example, the file will be downloaded and saved as `styles.css`.
 
 ## Add NPM and GitHub files
 
-NPM and GitHub are also supported:
+NPM and GitHub are also supported using the `npm:` and `gh:` specifiers:
 
 ```js
 // NPM file
@@ -112,13 +112,13 @@ site.add(
 );
 ```
 
-Internally, this uses jsDelivr to download the file. In this example,
+Internally, Lume uses jsDelivr to download the files. In this example,
 `npm:normalize.css` is transformed to
 `https://cdn.jsdelivr.net/npm/normalize.css`. Note that only one file is
 downloaded, not all package files.
 
-If you want to download all files of a NPM package or GitHub tag, use a glob
-pattern:
+If you want to download some or all files of a NPM package or GitHub tag, use a
+glob pattern:
 
 ```js
 // NPM package
@@ -143,21 +143,21 @@ path:
 // Add all files in the static directory but ensure they are lower case
 site.add("static", (file) => file.toLowerCase());
 
-// Add all images in the /img/ directory
+// Move all images into the /img/ directory
 site.add([".jpg", ".gif", ".png"], (file) => "/img" + file);
 ```
 
 ## Copy files
 
 When a file is added with `site.add()`, its content can be changed during the
-build. For example, if you add a CSS file and use a plugin to process the CSS
-code like [Postcss](../../plugins/postcss.md), the content of the file will be
-processed. If you want to prevent a file to be processed, use the `site.copy()`
+build. For example, if you're using a plugin to process the CSS code like
+[Postcss](../../plugins/postcss.md), the CSS files added with `site.add()` will
+be processed by the plugin. If you want to prevent that, use the `site.copy()`
 function.
 
 The signature of `site.copy()` is exactly the same as `site.add()`. The only
-difference is the copied files won't be processed. As `site.add()`, copying from
-NPM and GitHub is also supported.
+difference is the files are copied as is. Like `site.add()`, copying from NPM
+and GitHub is also supported.
 
 ```js
 site.use(postcss());

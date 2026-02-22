@@ -162,11 +162,44 @@ usage:
       ];
       ```
       ```ts { title="_data.ts" }
-      const title = "Galician municipalities";
+      import { DatabaseSync } from "node:sqlite";
 
-      const response = await fetch("https://example.com/galician-minicipalities.json");
-      const items = (await response.json()) as string[];
-      export { title, items };
+      export const title = "Galician municipalities";
+
+      const db = new DatabaseSync("municipalities.db");
+      export const items = db
+        .prepare("SELECT name FROM municipalities")
+        .all()
+        .map((row) => row.name);
+
+      db.close();
+      ```
+
+      </lume-code>
+
+  - title: Clean and intuitive API
+    description: |
+      Configure your site build in a single _config.ts or _config.js file [with plugins](/plugins/) and a simple and clean API.
+    code: |
+      <lume-code>
+
+      ```ts { title="_config.ts" }
+      import lume from "lume/mod.ts";
+
+      import lightningcss from "lume/plugins/lightningcss.ts";
+      import esbuild from "lume/plugins/esbuild.ts";
+      import svgo from "lume/plugins/svgo.ts";
+      import jsx from "lume/plugins/jsx.ts";
+
+      const site = lume();
+
+      // Add plugins
+      site.use(lightningcss())
+          .use(esbuild())
+          .use(svgo())
+          .use(jsx());
+
+      export default site;
       ```
 
       </lume-code>
@@ -177,14 +210,15 @@ usage:
     code: |
       <lume-code>
 
-      ```js { title="Process assets" }
+      ```js { title="_config.ts" }
+      // Process CSS files
       site.process([".css"], (files) => {
         for (const file of files) {
           file.content = customTransform(file.content);
         }
       })
-      ```
-      ```js { title="DOM API" }
+
+      // Transform the HTML code using DOM API
       site.process([".html"], (pages) => {
         for (const page of pages) {
           const externalLinks = page.document.querySelectorAll('a[href^="http"]');
@@ -195,7 +229,6 @@ usage:
         }
       })
       ```
-
       </lume-code>
 
   - title: Run your scripts and listen for events
@@ -204,46 +237,12 @@ usage:
     code: |
       <lume-code>
 
-      ```js { title="Scripts and events" }
+      ```js { title="_config.ts" }
       // Run a script after build
       site.addEventListener("afterBuild", "rsync -r _site/ user@host.com:/site");
 
       // Or run JavaScript code
       site.addEventListener("afterBuild", () => console.log("site build"));
-      ```
-
-      </lume-code>
-
-  - title: And everything with a clean and intuitive API
-    description: |
-      Configure your site build in a single _config.ts or _config.js file [with plugins](/plugins/) and a simple and clean API.
-    code: |
-      <lume-code>
-
-      ```ts { title="_config.ts" }
-      import lume from "lume/mod.ts";
-
-      const site = lume();
-
-      export default site;
-      ```
-      ```ts { title="_config.ts (with plugins)" }
-      import lume from "lume/mod.ts";
-      import lightningcss from "lume/plugins/lightningcss.ts";
-      import esbuild from "lume/plugins/esbuild.ts";
-      import svgo from "lume/plugins/svgo.ts";
-      import jsx from "lume/plugins/jsx.ts";
-      import date from "lume/plugins/date.ts";
-
-      const site = lume();
-
-      site.use(lightningcss())
-          .use(esbuild())
-          .use(svgo())
-          .use(jsx())
-          .use(date());
-
-      export default site;
       ```
 
       </lume-code>

@@ -31,7 +31,7 @@ where you can customize the site build.
 
 <!-- deno-fmt-ignore-end -->
 
-Here is an example of these two configuration files:
+Here is an example of these two files:
 
 <lume-code>
 
@@ -125,8 +125,8 @@ Run `deno task lume -h` to see all commands and options.
 
 ## Upgrade Lume
 
-The task `deno task lume upgrade` upgrades the Lume version used in your project
-folder to the latest version.
+The command `deno task lume upgrade` upgrades the Lume version used in your
+project to the latest version.
 
 Use the argument `--dev` to upgrade to the latest development version (the most
 recent commit in the [GitHub repository](https://github.com/lumeland/lume)).
@@ -134,9 +134,9 @@ It's useful to test new, unreleased Lume features.
 
 ## Vendoring
 
-If you want to download all remote dependencies of Deno in a local folder, you
-can use the `DENO_DIR` environment variable. For example, edit the `lume` task
-to define this variable:
+If you want to download all remote dependencies of Deno in your project folder,
+use the `DENO_DIR` environment variable. Edit the `lume` task to define this
+variable:
 
 ```json
 {
@@ -147,8 +147,7 @@ to define this variable:
 }
 ```
 
-Now when you run any Lume task, all Deno dependencies will be downloaded into
-the `_vendor` folder.
+Now all dependencies will be cached into the `_vendor` folder.
 
 ## Visual Studio Code configuration
 

@@ -4,10 +4,10 @@ description: Processing assets with Lume (to compile, minify, etc)
 order: 8
 ---
 
-In [the previous step,](./working-with-assets.md) we learned how to add files to
-the `_site` folder. Sometimes, you my want to modify the content of these files
-somehow, such as transpiling (like loading SASS files and converting them to
-CSS) or minifying them. To do that, Lume has the `process()` function.
+Ok, we just learned [how to add files to the build](./working-with-assets.md).
+But you may want to modify the content of these files somehow, such as
+transpiling (like converting SASS code to CSS) or minifying them. To do that,
+Lume has the `process()` function.
 
 ## Minify CSS code
 
@@ -44,16 +44,17 @@ export default site;
 
 </lume-code>
 
-We created the function `minifyCSS` to remove unnecessary spaces and line breaks
-in the CSS code. This is a **basic function for illustration purposes**. There
-are many open-source packages that you can use that will do a better job. We
-wanted to keep this demo simple, so we created a simple function ourselves.
+Ok, there's a lot of things here:
+
+First, we created the function `minifyCSS` to remove unnecessary spaces and line
+breaks in the CSS code. This is a **basic function for illustration purposes**.
+There are many open-source packages that you can use that will do a better job.
+We wanted to keep this demo simple, so we created a simple function ourselves.
 
 Then, we use the function `process()` to process the CSS files. The function
-accepts an array of extensions that we want to process and a callback that
-receives all files matching with these extensions in the first argument. We use
-the function `minifyCSS` to modify the variable `file.text`, which is where the
-content is stored.
+accepts an array of the file extensions that we want to process and a callback
+with all files matching with these extensions. We use the function `minifyCSS`
+to modify the variable `file.text`, which is where the content is stored.
 
 > [!tip]
 >

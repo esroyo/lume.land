@@ -19,7 +19,8 @@ flexible.
 - You can hook **processors** to manipulate `html` and assets, like `css` or
   `js`.
 - **It's Deno:** Forget about managing thousands of packages in `node_modules`
-  or complex bundlers. Lume only installs what you need. Clean, fast and secure.
+  or complex bundlers. Lume only downloads what you need. Clean, fast and
+  secure.
 
 ## Launch fast with Lume Themes
 

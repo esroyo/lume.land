@@ -4,8 +4,8 @@ description: How to use the configuration file to customize Lume
 order: 1
 ---
 
-The configuration file is the `_config.ts` or `_config.js`, saved in the site's
-root directory. If you don't have it yet, see the Installation
+The configuration file is the `_config.ts` or `_config.js` file saved in the
+project's root directory. If you don't have it yet, see the installation
 [documentation](../overview/installation.md) to learn how to create it.
 
 The minimal required code is:
@@ -18,16 +18,16 @@ const site = lume();
 export default site;
 ```
 
-The `lume()` function creates a new instance of Lume and exports it. This
-function accepts an object with the following configuration values:
+The `lume()` function creates an instance of Lume and exports it. This function
+accepts an object with the following configuration values:
 
 ## Basic options
 
 ### src
 
-This is the directory containing the source files of your site. All files needed
-to build your site must be here. Files and folders outside this directory won't
-be included in your site. It's relative to `cwd` and by default it's `.` (the
+This is the directory containing the source files of your site. All files used
+to build your site must be here. Files and folders outside this directory will
+be ignored by Lume. The path is relative to `cwd` and by default is `.` (the
 same directory), but some people prefer to store the source files in a subfolder
 like `src`.
 
@@ -39,18 +39,18 @@ const site = lume({
 
 > [!tip]
 >
-> You can override the value from the CLI with `--src`, which is useful if you
+> You can override this value from the CLI with `--src`, which is useful if you
 > have different sites in the same directory. For example:
 > `deno task lume --src=./src`
 
 ### dest
 
-This is the folder to export the generated site. It's relative to `cwd` and by
-default is `_site`.
+The path where the site is exported to. It's relative to `cwd` and by default is
+`_site`.
 
 ```ts
 const site = lume({
-  dest: "./output",
+  dest: "./dist",
 });
 ```
 
@@ -58,7 +58,7 @@ const site = lume({
 >
 > You can override the value from the CLI with `--dest`, which is useful if you
 > want to generate the site without overriding the previous one. For
-> example:`deno task lume --dest=./output`
+> example:`deno task lume --dest=./dist`
 
 ### emptyDest
 
@@ -71,15 +71,15 @@ const site = lume({
 });
 ```
 
-This is useful if you want to combine two or more sites to the same folder.
-Other use case is for very big sites (with more than 100K pages) that needs to
-be built in several steps to prevent running out of memory.
+This is useful if you want to combine two or more sites into the same folder.
+Other use case is for very big sites (with more than 100K pages) that may need
+to be built in several steps to prevent running out of memory.
 
 ### location
 
 This is the public URL of the site. It's useful to generate absolute URLs or fix
-the relative URLs if your site is published under a subdirectory, for example:
-`https://example.com/project-name/`. It only accepts a
+the paths if your site is published under a subdirectory, for example:
+`https://example.com/project-name/`. It only accepts an
 [URL object](https://developer.mozilla.org/en-US/docs/Web/API/URL/URL), for
 example:
 
@@ -89,19 +89,26 @@ const site = lume({
 });
 ```
 
-This value is ignored by the local server (started with `lume --serve`), which
-always uses `http://localhost:3000` (or the defined port if you change it).
-
 > [!tip]
 >
 > You can override the value from the CLI with `--location`, which is useful if
 > you want to build and deploy the site to different locations. For example:
 > `deno task lume --location=https://my-site.com/blog/`
 
+> [!important]
+>
+> If this value is defined in the `_config.ts` file, it's ignored by the local
+> server (started with `lume --serve`), which always uses
+> `http://localhost:3000` (or the defined port if you change it).
+>
+> The only way to use a different location in the server mode is with the
+> `--location` option.<br> For example:
+> `deno task lume --serve --location=http://local.dev:3000`
+
 ### prettyUrls
 
-By default it's enabled and generates pretty URLs, for example `/about-us/`
-instead of `/about-us.html`. Set `false` to disable it.
+This option is enabled by default to generate pretty URLs, for example
+`/about-us/` instead of `/about-us.html`. Set `false` to disable it.
 
 ```ts
 const site = lume({
@@ -155,11 +162,11 @@ is only compatible with Linux.
 ### includes
 
 It's a special folder used by default by the template engines and some plugins
-(like sass or postcss) to look for the included files. By default is `_includes`
-and this value is relative to the `src` folder.
+(like sass or postcss) to look for the included files. By default it's
+`_includes` and this path is relative to the `src` folder.
 
 As an example, if the `src` folder is `./src` and the includes folder is
-configured to `_includes`, Lume will look for the included files at
+configured to `_includes`, Lume will look for the included files inside
 `./src/_includes/`.
 
 ## Server options
@@ -177,7 +184,7 @@ with `/blog/`.
 
 ### port
 
-By default, the local server uses port `3000`. Use this option to set a
+By default, the local server uses the port `3000`. Use this option to set a
 different port.
 
 ```ts
@@ -190,7 +197,7 @@ const site = lume({
 
 > [!tip]
 >
-> This value can be overridden from CLI with `--port`. For example:
+> This value can be overridden from CLI with the `--port` option. For example:
 > `deno task lume --serve --port=8888`
 
 ### page404
@@ -214,14 +221,14 @@ const site = lume({
 
 > [!tip]
 >
-> This value can be set from CLI with `--open` or `-o`. For example:
+> This value can be set from CLI with the `--open` or `-o` options. For example:
 > `deno task lume --serve --open`
 
 ### middlewares
 
-Use this option to add middleware to the local web server. There are some
-middleware options for common needs at `lume/middlewares/*`, but you can create
-custom middleware easily. More info in the
+Use this option to add middlewares to the local web server. There are some
+common utilities available at `lume/middlewares/*`, but you can create custom
+middlewares easily. More info in the
 [Server documentation](../core/server.md#middleware).
 
 ```ts
@@ -239,8 +246,7 @@ const site = lume({
 ### debugBar
 
 The [debug bar](../core/debugbar.md) is a development toolbar that appears in
-your site while the dev server is running. Use this option to disable it or
-provide a HTTP specifier to use a different web component.
+your site while the dev server is running. Use this option to disable it.
 
 ```js
 const site = lume({
@@ -260,7 +266,7 @@ watch file changes with `lume --serve` and `lume --watch`.
   watcher.
 - **dependencies:** An object to manually map file dependencies. If the watcher
   detects that a dependency has changed, the dependent file will be considered
-  as changed too
+  as changed too.
 
 ```ts
 const site = lume({
@@ -272,7 +278,7 @@ const site = lume({
       (path) => path.endsWith(".foo"), // ignore extension
     ],
     dependencies: {
-      // If dep-1.ts or dep-2.ts change, _data.js is considered changed too.
+      // If dep-1.ts or dep-2.ts change, _data.js is reloaded too.
       "_data.js": ["dep-1.ts", "dep-2.ts"],
     },
   },

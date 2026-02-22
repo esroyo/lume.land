@@ -11,9 +11,8 @@ Every page has its own format.
 
 ## Create pages with Vento
 
-Vento, the format we have used to create layouts in the previous examples, can
-also be used to create pages directly. You simply create a file with the `.vto`
-extension. For example:
+Vento, the format used to create the layout can also be used to create pages
+directly. You only have to create a file with the `.vto` extension. For example:
 
 <lume-code>
 
@@ -47,20 +46,20 @@ links:
 
 </lume-code>
 
-This is an example of a page using Vento. Like markdown, it can contain front
-matter to store the page data, which is used to render the Vento code. Note that
-it has the `layout` variable, so the result of rendering this page will be
-passed to the layout in the `content` variable (along with the other variables
-`title` and `links`).
+This is an example of a page using Vento. Like markdown, it can contain the
+front matter to store the page data, which is used to render the Vento code.
+Note that it has the `layout` variable, so the result of rendering this page
+will be passed to the layout in the `content` variable (along with the other
+variables `title` and `links`).
 
 ## Create pages with JavaScript
 
-JavaScript can be useful for complex pages requiring some logic before
-rendering. You have to create a file with the extension `.page.js`. The `.page`
-sub-extension is required to distinguish JavaScript files that generate static
-pages from other JavaScript files destined to be run in the browser.
+JavaScript (or TypeScript) can be useful for complex pages requiring some logic
+before rendering. You can create page files with the extension `.page.js`. The
+`.page` sub-extension is required to distinguish JavaScript files that generate
+static pages from other JavaScript files destined to be run in the browser.
 
-Here's the previous Vento example in JavaScript:
+The previous Vento example reimplemented in JavaScript:
 
 <lume-code>
 
@@ -87,9 +86,9 @@ export default function ({ title, links }) {
 
     <ul>
       ${
-    links.map((link) => `<li><a href="${link.url}">${link.text}</a></li>`).join(
-      "",
-    )
+    links
+      .map((link) => `<li><a href="${link.url}">${link.text}</a></li>`)
+      .join("")
   }
     </ul>
   </article>`;
