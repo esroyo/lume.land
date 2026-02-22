@@ -1,6 +1,6 @@
 {
   "imports": {
-    "lume/": "file:///Users/oscarotero/www/lumeland/lume/",
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.1/",
     "lume/jsx-runtime": "https://cdn.jsdelivr.net/gh/oscarotero/ssx@0.1.14/jsx-runtime.ts"
   },
   "lock": false,
