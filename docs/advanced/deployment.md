@@ -11,19 +11,14 @@ creating a deno task in the `deno.json` file:
 
 ```json
 {
-  "importMap": "import_map.json",
   "tasks": {
-    "build": "deno task lume",
-    "serve": "deno task lume -s",
-    "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
     "deploy": "deno task build && rsync -r _site/ user@my-site.com:~/www"
   }
 }
 ```
 
-In addition to the regular Lume tasks, we have added a new task named **deploy**
-that executes two commands: It builds the site and uploads it to the server.
-Now, to build and deploy your site, just run:
+The task **deploy** task executes two commands: It builds the site and uploads
+it to the server. Now, to build and deploy your site, just run:
 
 ```sh
 deno task deploy
@@ -149,7 +144,7 @@ Create a `netlify.toml` file in your repository with the following code:
 build command must install it.
 
 ```sh
-curl -fsSL https://deno.land/install.sh | sh | sh && /vercel/.deno/bin/deno task build
+curl -fsSL https://deno.land/install.sh | sh && /vercel/.deno/bin/deno task build
 ```
 
 Remember also to configure the output directory to `_site`.
@@ -160,7 +155,7 @@ To deploy your Lume site with [Cloudflare Pages](https://pages.cloudflare.com/),
 configure the build command as follows:
 
 ```sh
-curl -fsSL https://deno.land/install.sh | sh | sh && /opt/buildhome/.deno/bin/deno task build
+curl -fsSL https://deno.land/install.sh | sh && /opt/buildhome/.deno/bin/deno task build
 ```
 
 Remember to configure the output directory to `_site`.
@@ -171,7 +166,7 @@ To deploy your Lume site with [Render](https://render.com/), create a new
 _Static Site_ project and configure the build command as follows:
 
 ```sh
-curl -fsSL https://deno.land/install.sh | sh | sh && /opt/render/.deno/bin/deno task build
+curl -fsSL https://deno.land/install.sh | sh && /opt/render/.deno/bin/deno task build
 ```
 
 Configure the output directory to `_site`.
@@ -196,8 +191,7 @@ frontend:
   phases:
     build:
       commands:
-        - curl -fsSL https://deno.land/install.sh | sh
-        - /root/.deno/bin/deno task build
+        - curl -fsSL https://deno.land/install.sh | sh /root/.deno/bin/deno task build
   artifacts:
     baseDirectory: /_site
     files:
@@ -225,7 +219,7 @@ create the following `package.json` file:
     "build": "deno task lume"
   },
   "devDependencies": {
-    "deno-bin": "^1.37.2"
+    "deno": "^2.6.8"
   }
 }
 ```
