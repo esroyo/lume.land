@@ -9,8 +9,8 @@ tags:
 ## Description
 
 This plugin uses [HTML-validate](https://html-validate.org/) package to check
-the HTML code and create a new tab in the [debug bar](../docs/core/debugbar.md)
-with the detected issues.
+the HTML code and create a new tab in the
+[debug bar](../docs/core/12.debugbar.md) with the detected issues.
 
 ## Installation
 

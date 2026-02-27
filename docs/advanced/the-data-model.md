@@ -190,7 +190,7 @@ Is converted to:
 If the `content` variable is a
 [Generator function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function*),
 Lume will generate the pages at this point. More info about
-[generating pages](../core/multiple-pages.md).
+[generating pages](../core/04.multiple-pages.md).
 
 For example, let's say we have the following generator page:
 
@@ -248,10 +248,10 @@ That generates the three following pages:
 
 ## Preprocessors
 
-If you've defined [any preprocessor](../core/processors.md#preprocess) in your
-`_config` file, they're executed here. Preprocessors allow modification of the
-`Data` object before rendering. The preprocessors receive the `Page` instance
-and the `Data` object is stored in the `Page.data` property.
+If you've defined [any preprocessor](../core/02.processors.md#preprocess) in
+your `_config` file, they're executed here. Preprocessors allow modification of
+the `Data` object before rendering. The preprocessors receive the `Page`
+instance and the `Data` object is stored in the `Page.data` property.
 
 ```js
 // _config.js
@@ -331,7 +331,7 @@ list with all of them:
 [draft](../creating-pages/page-data.md#tags) `boolean`
 : If it's `true`, the page will be ignored. Use the env variable `LUME_DRAFTS=true` to show draft pages.
 
-[renderOrder](../core/render-order.md) `number`
+[renderOrder](../core/06.render-order.md) `number`
 : To configure the rendering order of a page.
 
 content `string | Uint8Array | function | object`
@@ -343,10 +343,10 @@ children `string | Uint8Array | function | object`
 [layout](../creating-pages/layouts.md) `string`
 : The layout file used to render the page.
 
-[templateEngine](../core/multiple-template-engines.md) `string | string[]`
+[templateEngine](../core/03.multiple-template-engines.md) `string | string[]`
 : Configure different template engines to render the page.
 
-[mergedKeys](../core/merged-keys.md) `Record<string, "array" | "stringArray" | "object">`
+[mergedKeys](../core/07.merged-keys.md) `Record<string, "array" | "stringArray" | "object">`
 : Configure how some data keys will be merged with the parent data.
 
 lang `string`
@@ -358,7 +358,7 @@ type `string`
 id `string | number`
 : The id of the page. Used to identify a page inside a type.
 
-[comp](../core/components.md) `object`
+[comp](../core/09.components.md) `object`
 : The components available for this page (from `_components` folders).
 
 page `Page`
@@ -367,10 +367,10 @@ page `Page`
 [alternates](../../plugins/multilanguage.md) `Data[]`
 : Other pages with the same content translated to other languages.
 
-[search](../core/searching.md#searching-pages) `Searcher`
+[search](../core/05.searching.md#searching-pages) `Searcher`
 : A utility class to search pages and files.
 
-[paginate](../core/searching.md#pagination) `function`
+[paginate](../core/05.searching.md#pagination) `function`
 : A function to paginate the result of searching pages.
 
 unlisted `boolean`

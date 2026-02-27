@@ -47,7 +47,7 @@ const site = lume(
       port: 3000,
 
       /** The hostname to listen on */
-      port: "localhost",
+      hostname: "localhost",
 
       /** Open the server in a browser after starting the server */
       open: false,
@@ -60,6 +60,9 @@ const site = lume(
 
       /** Optional middleware for the server */
       middlewares: [];
+
+      /** The root folder (relative to dest) */
+      root: "."
     },
 
     /** Local file watcher options */
@@ -75,6 +78,9 @@ const site = lume(
 
       /** Extra files and folders to watch (ouside the src folder) */
       include: [];
+
+      /** Hardcode map dependencies between files */
+      dependencies: {}
     },
 
     /** Component options */
@@ -204,4 +210,7 @@ site.url(path, absolute = false);
 
 /** Get the content of any file */
 site.getContent(file, loader);
+
+/** Create pages dynamically */
+site.getOrCreatePage(url);
 ```

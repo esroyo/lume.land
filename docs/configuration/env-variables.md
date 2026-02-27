@@ -32,7 +32,7 @@ Lume has the following environment variables that you can use with
   ```
 
 `LUME_NOCACHE`
-: Lume has a cache for [remote files](../core/remote-files.md),
+: Lume has a cache for [remote files](../core/11.remote-files.md),
   so they are downloaded only once. Use this environment variable to disable it.
 
   ```

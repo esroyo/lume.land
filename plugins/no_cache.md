@@ -13,7 +13,7 @@ Modify the responses to disable the browser cache. It's used by Lume in the
 ## Installation
 
 This middeware must be used with the
-[Lume's HTTP Server](../docs/core/server.md). Create an entry point file (for
+[Lume's HTTP Server](../docs/core/16.server.md). Create an entry point file (for
 example, `serve.ts`) with the following code:
 
 ```ts

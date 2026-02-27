@@ -35,12 +35,12 @@ differences can help.
 
 - In Lume, there isn't the concept of
   [collections](https://www.11ty.dev/docs/collections/). To get a list of pages,
-  use the [search helper](../core/searching.md).
+  use the [search helper](../core/05.searching.md).
 - In Lume, all data files are `_data.*` or `_data/*`. In Eleventy
   [there are different ways to place data](https://www.11ty.dev/docs/data-template-dir/),
   and `_data/*` is only used for global data.
 - To paginate in Lume, you have to create a `.page.js` or `.page.ts` file
-  exporting a generator ([more info](../core/searching.md#pagination)). There's no way to
+  exporting a generator ([more info](../core/05.searching.md#pagination)). There's no way to
   do it using the front matter, like in Eleventy.
 - The event `beforeWatch` in Eleventy is named `beforeUpdate` in Lume.
 

@@ -229,7 +229,7 @@ const site = lume({
 Use this option to add middlewares to the local web server. There are some
 common utilities available at `lume/middlewares/*`, but you can create custom
 middlewares easily. More info in the
-[Server documentation](../core/server.md#middleware).
+[Server documentation](../core/16.server.md#middleware).
 
 ```ts
 import expires from "lume/middlewares/expires.ts";
@@ -245,7 +245,7 @@ const site = lume({
 
 ### debugBar
 
-The [debug bar](../core/debugbar.md) is a development toolbar that appears in
+The [debug bar](../core/12.debugbar.md) is a development toolbar that appears in
 your site while the dev server is running. Use this option to disable it.
 
 ```js
@@ -293,7 +293,7 @@ const site = lume({
 ## Components options
 
 The `components` object allows to configure the output files of
-[Lume components](../core/components.md).
+[Lume components](../core/09.components.md).
 
 - **cssFile:** The file name to export the CSS code of the components.
 - **jsFile:** The file name to export the JS code of the components.

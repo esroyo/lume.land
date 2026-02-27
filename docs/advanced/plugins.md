@@ -3,13 +3,10 @@ title: Creating plugins
 description: Guide to creating your own plugins for Lume
 ---
 
-Lume can be easily extended by adding more [loaders](../core/loaders.md),
-[engines](../core/loaders.md#template-engines), or
-[processors](../core/processors.md). Plugins provide an easy interface to extend
-Lume without writing too much code in the `_config.ts` file.
-
-A plugin is just a function that receives a lume instance in the first argument,
-in order to configure and register new elements to it.
+Plugins provide an easy interface to extend Lume without writing too much code
+in the `_config.ts` file. A plugin is just a function that receives a lume
+instance in the first argument, in order to configure and register new elements
+to it.
 
 ## Simple plugin example
 
@@ -23,14 +20,9 @@ import lume from "lume/mod.ts";
 
 const site = lume();
 
-function addBanner(content: string): string {
-  const banner = "/* © This code belongs to ACME inc. */";
-  return banner + "\n" + content;
-}
-
 site.process([".css"], (pages) => {
   for (const page of pages) {
-    page.text = addBanner(page.text);
+    page.text = `/* © This code belongs to ACME inc. */\n${page.text}`;
   }
 });
 
@@ -48,15 +40,12 @@ interface Options {
 }
 
 export default function (options: Options) {
-  function addBanner(content: string): string {
-    const banner = `/* ${options.message} */`;
-    return banner + "\n" + content;
-  }
-
   return (site: Site) => {
     site.process([".css"], (pages) => {
+      const { message } = options;
+
       for (const page of pages) {
-        page.text = addBanner(page.text);
+        page.text = `/* ${message} */\n${page.text}`;
       }
     });
   };
@@ -78,9 +67,9 @@ site.use(cssBanner({
 export default site;
 ```
 
-Plugins can't do anything that you couldn't do in the `_config.ts` file, but
-they provide a better interface to organize, reuse, and even share your code
-with others.
+Plugins can't do anything that you couldn't do directly in the `_config.ts`
+file, but they provide a better interface to organize, reuse, and even share
+your code with others.
 
 Take a look at the
 [Lume plugins repository](https://github.com/lumeland/lume/tree/main/plugins)
@@ -101,27 +90,25 @@ interface Options {
 }
 
 export default function (options: Options) {
-  function addBanner(content: string): string {
-    const banner = `/* ${options.message} */`;
-    return banner + "\n" + content;
-  }
-
   return (site: Site) => {
     // Add a hook to change the message
-    site.hooks.changeCssBanner = (message: string) => {
+    site.hooks.changeMessage = (message: string) => {
       options.message = message;
     };
 
+    // Process the CSS files
     site.process([".css"], (pages) => {
+      const { message } = options;
+
       for (const page of pages) {
-        page.text = addBanner(page.text);
+        page.text = `/* ${message} */\n${page.text}`;
       }
     });
   };
 }
 ```
 
-Now the message can be changed after plugin installation:
+Now the message can be changed after the plugin initialization:
 
 ```ts
 import lume from "lume/mod.ts";
@@ -133,7 +120,7 @@ site.use(cssBanner({
   message: "© This code belongs to ACME inc.",
 }));
 
-site.hooks.changeCssBanner("This code is open source");
+site.hooks.changeMessage("This code is open source");
 
 export default site;
 ```
@@ -145,11 +132,11 @@ Or we can invoke this hook from other plugin:
 
 export default function () {
   return (site: Site) => {
-    if (!site.hooks.changeCssBanner) {
+    if (!site.hooks.changeMessage) {
       throw new Error("This plugin requires css_banner to be installed before");
     }
 
-    site.hooks.changeCssBanner("This code is open source");
+    site.hooks.changeMessage("This code is open source");
   };
 }
 ```
@@ -172,9 +159,9 @@ export default site;
 
 ## Publishing plugins
 
-If you created a plugin and want to let other people use it, it's
-straightforward thanks to HTTP imports and Deno's native Typescript support. You
-only need to make your code accessible over an HTTP URL.
+If you created a plugin and want people to use it, it's straightforward thanks
+to HTTP imports and Deno's native Typescript support. You only need to make your
+code accessible over an HTTP URL.
 
 This is a list of recommendations:
 
@@ -199,8 +186,7 @@ entry in your import maps).
   recommended to serve files from GitHub repositories and ensure reliability
   (they are permanently cached
   [even if the GitHub repository is deleted](https://www.jsdelivr.com/github)).
-  Alternatively, you can use `deno.land/x` but it's not recommended because it's
-  deprecated by Deno.
+  Alternatively, you can use `deno.land/x` but it's deprecated by Deno.
 
 - [JSR](https://jsr.io/) is **not recommended** due to not supporting HTTP
   imports (it's not possible to import Lume types), buggy import maps behavior,

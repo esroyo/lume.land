@@ -83,7 +83,7 @@ templates. It's useful to run components:
 
 ## Components
 
-[Lume's components](../docs/core/components.md) are accessible through the
+[Lume's components](../docs/core/09.components.md) are accessible through the
 variable `comp`.
 
 ```html

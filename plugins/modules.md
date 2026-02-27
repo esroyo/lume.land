@@ -116,7 +116,7 @@ export default ({ title, content }: Lume.Data, helpers: Lume.Helpers) =>
 
 ## Components
 
-You can create [Lume components](../docs/core/components.md) in JS or TS
+You can create [Lume components](../docs/core/09.components.md) in JS or TS
 creating files in the `_components` folder. For example:
 
 <lume-code>

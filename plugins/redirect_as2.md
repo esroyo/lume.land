@@ -14,8 +14,8 @@ This middleware redirects all Activity Stream requests to any server like
 ## Installation
 
 This middeware must be used with the
-[Lume's HTTP Server](../docs/core/server.md). To use it in production, you need
-a host running a Deno server, like [Deno Deploy](https://deno.com/deploy).
+[Lume's HTTP Server](../docs/core/16.server.md). To use it in production, you
+need a host running a Deno server, like [Deno Deploy](https://deno.com/deploy).
 
 You have to provide the `rewriteUrl` option with a function that return the URL
 for the redirection. The middleware has two helpers: `bridgyFed` and `hatsu`.

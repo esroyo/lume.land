@@ -10,7 +10,7 @@ tags:
 
 Plugin to check the SEO basics (titles, descriptions, alt text in images, etc)
 and other not very common checks like common words percentage. It creates a new
-tab in the [debug bar](../docs/core/debugbar.md) with the detected issues.
+tab in the [debug bar](../docs/core/12.debugbar.md) with the detected issues.
 
 ## Installation
 

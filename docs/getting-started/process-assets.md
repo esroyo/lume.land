@@ -59,7 +59,7 @@ to modify the variable `file.text`, which is where the content is stored.
 > [!tip]
 >
 > Processors are one of the most powerful features of Lume. You can learn more
-> in the [processors documentation](../core/processors.md).
+> in the [processors documentation](../core/02.processors.md).
 
 As you can see, adding and processing files is really easy in Lume. And if that
 were not enough, Lume has a powerful plugin system that makes these tasks

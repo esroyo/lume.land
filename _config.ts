@@ -16,6 +16,7 @@ import checkUrls from "lume/plugins/check_urls.ts";
 import redirects from "lume/plugins/redirects.ts";
 import ogImages from "lume/plugins/og_images.ts";
 import nav from "lume/plugins/nav.ts";
+import extractOrder from "lume/plugins/extract_order.ts";
 import { env } from "lume/core/utils/env.ts";
 import toc from "https://cdn.jsdelivr.net/gh/lumeland/markdown-plugins@0.10.0/toc.ts";
 import analyze, {
@@ -86,6 +87,7 @@ site
   }))
   .use(ogImages())
   .use(transformImages())
+  .use(extractOrder())
   .use(metas())
   .use(nav())
   .use(icons())

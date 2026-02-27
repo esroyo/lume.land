@@ -16,8 +16,8 @@ be used by the shutdown page). It also sends the `Retry-After` header.
 ## Installation
 
 This middeware must be used with the
-[Lume's HTTP Server](../docs/core/server.md). To use it in production, you need
-a host running a Deno server, like [Deno Deploy](https://deno.com/deploy).
+[Lume's HTTP Server](../docs/core/16.server.md). To use it in production, you
+need a host running a Deno server, like [Deno Deploy](https://deno.com/deploy).
 
 Create an entry point file (for example, `serve.ts`) with the following code:
 

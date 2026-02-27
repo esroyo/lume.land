@@ -101,17 +101,17 @@ Tags are used to group pages. See [Tags](tags.md)
 ### templateEngine
 
 To override the template engine used to render the page. See
-[Template engine](../core/multiple-template-engines.md)
+[Template engine](../core/03.multiple-template-engines.md)
 
 ### renderOrder
 
 To customize the order in which the page is rendered. See
-[Render Order](../core/render-order.md)
+[Render Order](../core/06.render-order.md)
 
 ### mergedKeys
 
 To customize how some data is merged. See
-[Merged Keys docs](../core/merged-keys.md)
+[Merged Keys docs](../core/07.merged-keys.md)
 
 <lume-code>
 
